@@ -5,10 +5,10 @@ public:
         if(ind==n) return 0;
         if(dp[ind][buy][cap]!=-1) return dp[ind][buy][cap];
         if(buy){
-            return dp[ind][buy][cap]=max(-prices[ind]+profit(prices,n,ind+1,0,cap,dp),profit(prices,n,ind+1,1,cap,dp));
+            return dp[ind][buy][cap]=max(-prices[ind]+profit(prices,n,ind+1,0,cap,dp),0+profit(prices,n,ind+1,1,cap,dp));
         }
         else{
-            return dp[ind][buy][cap]=max(prices[ind]+profit(prices,n,ind+1,1,cap-1,dp),profit(prices,n,ind+1,0,cap,dp));
+            return dp[ind][buy][cap]=max(prices[ind]+profit(prices,n,ind+1,1,cap-1,dp),0+profit(prices,n,ind+1,0,cap,dp));
         }
     }
     int maxProfit(vector<int>& prices) {
