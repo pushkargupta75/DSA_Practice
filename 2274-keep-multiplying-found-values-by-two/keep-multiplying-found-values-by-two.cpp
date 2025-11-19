@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int findFinalValue(vector<int>& nums, int original) {
+        int i=0;
+        while(i<nums.size()){
+            if(nums[i]==original){
+                i=0;
+                original*=2;
+                continue;
+            }
+            i++;
+        }
+        return original;
+    }
+};
