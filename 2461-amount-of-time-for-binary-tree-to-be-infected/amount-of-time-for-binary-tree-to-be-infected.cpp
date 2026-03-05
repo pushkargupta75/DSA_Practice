@@ -48,7 +48,7 @@ public:
         while(!q.empty()){
             int si=q.size();
             bool infected=false;
-            for(int i=0;i<si;i++){
+            for(int i=0;i<si;i++){  
                 TreeNode* cur=q.front();
                 q.pop();
                 
