@@ -13,7 +13,7 @@ public:
     void reorderList(ListNode* head) {
         stack<ListNode*> st;
         ListNode* temp=head;
-        while(temp!=nullptr){
+        while(temp){
             st.push(temp);
             temp=temp->next;
         }
@@ -23,11 +23,12 @@ public:
         while(k--){
             topnode=st.top();
             st.pop();
-            ListNode* temp=curr->next;
+            ListNode*temp=curr->next;
             curr->next=topnode;
             topnode->next=temp;
             curr=temp;
         }
         curr->next=nullptr;
+
     }
 };
