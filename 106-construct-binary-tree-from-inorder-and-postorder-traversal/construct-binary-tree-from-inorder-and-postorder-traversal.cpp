@@ -11,20 +11,19 @@
  */
 class Solution {
 public:
-    TreeNode* build(vector<int>& inorder,vector<int>& postorder,int& postIndex,int inStart,int inEnd,unordered_map<int,int>& idxMap) {
-        if(inStart>inEnd) return nullptr;
-        int rootVal=postorder[postIndex--];
-        TreeNode* root=new TreeNode(rootVal);
-        int inIndex=idxMap[rootVal];
-        root->right=build(inorder,postorder,postIndex,inIndex+1,inEnd,idxMap);
-        root->left=build(inorder,postorder,postIndex,inStart,inIndex-1,idxMap);
+    TreeNode* build(vector<int>& inorder, vector<int>& postorder,int& postindex,int instart,int inend,unordered_map<int,int> &mp){
+        if(instart>inend) return nullptr;
+        int rootval=postorder[postindex--];
+        TreeNode* root=new TreeNode(rootval);
+        int inindex=mp[rootval];
+        root->right=build(inorder,postorder,postindex,inindex+1,inend,mp);
+        root->left=build(inorder,postorder,postindex,instart,inindex-1,mp);
         return root;
     }
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-        if(inorder.empty() || postorder.empty() || inorder.size()!=postorder.size()) return nullptr;
-        unordered_map<int,int> idxMap;
-        for (int i=0;i<(int)inorder.size();i++) idxMap[inorder[i]]=i;
-        int postIndex=(int)postorder.size()-1;
-        return build(inorder, postorder,postIndex,0,(int)inorder.size()-1,idxMap);
+        unordered_map<int,int> mp;
+        for(int i=0;i<inorder.size();i++) mp[inorder[i]]=i;
+        int postindex=postorder.size()-1;
+        return build(inorder,postorder,postindex,0,inorder.size()-1,mp);
     }
 };
